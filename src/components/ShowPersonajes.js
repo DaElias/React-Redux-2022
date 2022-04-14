@@ -30,16 +30,18 @@ const ShowPersonajes = ({
 }) => {
   const inputName = useRef(null);
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     fetch("https://rickandmortyapi.com/api/episode")
       .then((res) => res.json())
       .then((res) => {
-          setPersonajes(res.results);
-    })
-    .catch((e) => console.log(e));
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[]);
+        setPersonajes(res.results);
+      })
+      .catch((e) => {
+        console.log("Error: ", e);
+        setPersonajes([]);
+      });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleDelete = (id) => deletePersonaje(id);
 
