@@ -1,6 +1,6 @@
-import React, {  useState } from "react";
+import React, { useState } from "react";
 
-const Element = ({ elemt, handleDelete, handleSaveChanges }) => {
+const Element = ({ elemt, handleDelete, handleSaveChanges, num }) => {
   const [editar, setEditar] = useState(false);
   const [inputEdit, setInputEdit] = useState({
     name: elemt.name,
@@ -21,6 +21,7 @@ const Element = ({ elemt, handleDelete, handleSaveChanges }) => {
   };
   return (
     <div style={{ backgroundColor: "green", color: "white" }}>
+      <b>{num + 1}-</b>
       {!editar ? (
         <>
           {JSON.stringify({ name: elemt.name, fecha: elemt.air_date })}
