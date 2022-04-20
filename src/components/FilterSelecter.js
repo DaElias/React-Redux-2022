@@ -1,8 +1,8 @@
 import React from "react";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 const FilterSelecter = ({ question = "", options = [] }) => {
-  const info = useSelector((state) => state);
-  console.log(info);
+  // const info = useSelector((state) => state);
+  // console.log(info);
   return (
     <>
       <h4>{question}</h4>

@@ -1,31 +1,48 @@
+/** Import funciions */
+import { getAll } from "../services/notes";
 /** Typos de asiganciones */
-const SET_PERSONAJES = "SET_PERSONAJES";
-const DELETE_PERONAJE = "DELETE_PERONAJE";
-const GET_PERSONAJE = "GET_PERSONAJE";
-const SET_PERSON = "SET_PERSON";
-const EDIT_PERSON = "EDIT_PERSON";
-const EMPTY_LIST = "EMPTY_LIST";
-const ADD_REGISTER_DATA = "ADD_REGISTER_DATA";
-/** Typos de funciones */
-const setPersonajes = (payload) => ({ type: SET_PERSONAJES, payload });
-const deletePersonaje = (payload) => ({ type: DELETE_PERONAJE, payload });
-const setPerson = (payload) => ({ type: SET_PERSON, payload });
-const editPerson = (payload) => ({ type: EDIT_PERSON, payload });
-const emptyList = () => ({ type: EMPTY_LIST });
-const addRegisterData = (payload) => ({ type: ADD_REGISTER_DATA, payload });
+export const SET_PERSONAJES = "@PERONS/SET_PERSONAJES";
+export const DELETE_PERONAJE = "@PERONS/DELETE_PERONAJE";
+export const GET_PERSONAJE = "@PERONS/GET_PERSONAJE";
+export const SET_PERSON = "@PERONS/SET_PERSON";
+export const EDIT_PERSON = "@PERONS/EDIT_PERSON";
+export const EMPTY_LIST = "@PERONS/EMPTY_LIST";
+export const ADD_REGISTER_DATA = "@NOTE/ADD_REGISTER_DATA";
+export const ADD_TODOPERSONAJES = "@STARWARS/ADD_TODOPERSONAJES";
+export const ADD_PERSONAJES = "@STARWARS/ADD_PERSONAJES";
+export const ADD_NOTES = "@NOTES/ADD_NOTES";
+export const ADD_NOTE = "@NOTE/ADD_NOTE";
+export const DELETE_NOTE = "@NOTE/DELETE_NOTE";
+export const DELETE_ALL_NOTE = "@NOTE/DELETE_ALL_NOTE";
+export const EDIT_NOTE_ID = "@NOTE/EDIT_NOTE_ID";
 
-export {
-  SET_PERSONAJES,
-  DELETE_PERONAJE,
-  GET_PERSONAJE,
-  SET_PERSON,
-  EDIT_PERSON,
-  EMPTY_LIST,
-  ADD_REGISTER_DATA,
-  setPersonajes,
-  deletePersonaje,
-  setPerson,
-  editPerson,
-  emptyList,
-  addRegisterData,
+/** Typos de funciones */
+export const setPersonajes = (payload) => ({ type: SET_PERSONAJES, payload });
+export const deletePersonaje = (payload) => ({
+  type: DELETE_PERONAJE,
+  payload,
+});
+export const setPerson = (payload) => ({ type: SET_PERSON, payload });
+export const editPerson = (payload) => ({ type: EDIT_PERSON, payload });
+export const emptyList = () => ({ type: EMPTY_LIST });
+export const addRegisterData = (payload) => ({
+  type: ADD_REGISTER_DATA,
+  payload,
+});
+export const addTodoPersonajes = (payload) => ({
+  type: ADD_TODOPERSONAJES,
+  payload,
+});
+export const addPersonajes = (payload) => ({ type: ADD_PERSONAJES, payload });
+//* Notes
+export const addNotes = () => async (dispatch) => {
+  const notes = await getAll(); //* notas
+  dispatch({
+    type: ADD_NOTES,
+    payload: notes,
+  });
 };
+export const addNote = (payload) => ({ type: ADD_NOTE, payload });
+export const deleteNote = (payload) => ({ type: DELETE_NOTE, payload });
+export const deleteAllNote = (payload) => ({ type: DELETE_ALL_NOTE, payload });
+export const editNoteId = (id) => ({ type: EDIT_NOTE_ID, payload: { id } });
