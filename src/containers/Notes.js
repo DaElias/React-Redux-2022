@@ -10,12 +10,13 @@ const Notes = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const content = e.target.content.value;
-    //TODO crear nueva y agregar al back-end y front-end
-    const newNote = await createNewNote(content);
-    dispatch(addNote(newNote));
-
-    e.target.content.value = "";
+    if (e.target.content.value !== "") {
+      const content = e.target.content.value;
+      //TODO crear nueva y agregar al back-end y front-end
+      const newNote = await createNewNote(content); // add to backEnd
+      dispatch(addNote(newNote)); // add to frontEnd
+      e.target.content.value = "";
+    }
   };
   return (
     <div>
@@ -37,7 +38,7 @@ const Notes = () => {
       <form onSubmit={handleSubmit}>
         <label>
           Contenido:
-          <input name="content" />
+          <input name="content" required />
         </label>
         <input type="submit" value="Submit" />
       </form>
