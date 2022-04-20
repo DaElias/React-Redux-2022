@@ -1,7 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addNote, editNoteId } from "../actions/type";
-import { createNewNote } from "../services/notes";
 
 const Notes = () => {
   const dispatch = useDispatch();
@@ -9,14 +8,17 @@ const Notes = () => {
   const handleEditNote = (id) => dispatch(editNoteId(id));
 
   const handleSubmit = async (e) => {
+    //   //TODO crear nueva y agregar al back-end y front-end
     e.preventDefault();
-    if (e.target.content.value !== "") {
-      const content = e.target.content.value;
-      //TODO crear nueva y agregar al back-end y front-end
-      const newNote = await createNewNote(content); // add to backEnd
-      dispatch(addNote(newNote)); // add to frontEnd
-      e.target.content.value = "";
+    const content = e.target.content.value;
+    if (content !== "") {
+      // * Old method
+      //   const newNote = await createNewNote(content); // add to backEnd
+      //   dispatch(addNote(newNote)); // add to frontEnd
+      // * New emthod
+      dispatch(addNote(content)); // use Thunk
     }
+    e.target.content.value = "";
   };
   return (
     <div>

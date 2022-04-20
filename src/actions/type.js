@@ -1,5 +1,5 @@
 /** Import funciions */
-import { getAll } from "../services/notes";
+import { getAll, createNewNote } from "../services/notes";
 /** Typos de asiganciones */
 export const SET_PERSONAJES = "@PERONS/SET_PERSONAJES";
 export const DELETE_PERONAJE = "@PERONS/DELETE_PERONAJE";
@@ -34,6 +34,7 @@ export const addTodoPersonajes = (payload) => ({
   payload,
 });
 export const addPersonajes = (payload) => ({ type: ADD_PERSONAJES, payload });
+
 //* Notes
 export const addNotes = () => async (dispatch) => {
   const notes = await getAll(); //* notas
@@ -42,7 +43,10 @@ export const addNotes = () => async (dispatch) => {
     payload: notes,
   });
 };
-export const addNote = (payload) => ({ type: ADD_NOTE, payload });
+export const addNote = (content) => async (dispatch) => {
+  const newNote = await createNewNote(content); // add to backEnd
+  dispatch({ type: ADD_NOTE, payload: newNote }); // add to frontEnd
+};
 export const deleteNote = (payload) => ({ type: DELETE_NOTE, payload });
 export const deleteAllNote = (payload) => ({ type: DELETE_ALL_NOTE, payload });
 export const editNoteId = (id) => ({ type: EDIT_NOTE_ID, payload: { id } });
