@@ -36,7 +36,7 @@ const Notes = () => {
           </li>
         ))}
       </ul>
-      <h2>Create Mote</h2>
+      <h2>Create Note</h2>
       <form onSubmit={handleSubmit}>
         <label>
           Contenido:
